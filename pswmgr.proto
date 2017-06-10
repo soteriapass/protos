@@ -5,6 +5,7 @@ package pswmgr;
 service Authentication 
 {
     rpc Authenticate (AuthenticationRequest) returns (AuthReply) {}
+    rpc ValidateToken (AuthenticateTokenRequest) return (TokenAuthReply) {}
 }
 
 service PasswordManager 
@@ -26,6 +27,11 @@ message AuthenticationRequest
     string username = 1;
     string password = 2; 
     int32 tfa_token = 3;
+}
+
+message AuthenticateTokenRequest
+{
+    string token = 1;
 }
 
 message UserPasswordUpdateRequest
@@ -65,6 +71,11 @@ message AuthReply
     bool success = 1;
     string token = 2;
     bool token_needed_for_2fa = 3;
+}
+
+message TokenAuthReply
+{
+    bool success = 1;
 }
 
 message PasswordEntry
