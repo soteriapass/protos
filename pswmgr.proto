@@ -76,6 +76,7 @@ message AuthReply
 message TokenAuthReply
 {
     bool success = 1;
+    string username = 2;
 }
 
 message PasswordEntry
